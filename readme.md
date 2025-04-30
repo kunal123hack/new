@@ -24,7 +24,7 @@ Absolutely! Here's how your full project works **with respect to ports**, broken
 #### ➤ Routes:
 - `POST /generate`:
   - Receives data from frontend
-  - Uses **Langchain + Groq API** to generate PR post
+  - Uses **gemini** to generate PR post
   - Sends back the generated post
 - `POST /post`:
   - Receives content
