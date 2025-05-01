@@ -14,7 +14,7 @@ ACCESS_TOKEN = "EAAanxPF3CZB4BO20DQZByi3lCGSSfjXc7HiapX7G3M2l2dK2I4eTNChPQCrgHGy
 import google.generativeai as genai
 
 # Replace with your API key
-genai.configure(api_key="AIzaSyDzeXSAWn4um8WLyDJCTQcPEiYeRWQM8F0")
+genai.configure(api_key="dljkf")
 
 llm = genai.GenerativeModel('gemini-1.5-pro')
 
@@ -66,58 +66,6 @@ def post_content():
     if fb_res.status_code == 200 and portfolio_res.status_code == 200:
         return jsonify({"success": True})
     return jsonify({"success": False, "fb_status": fb_res.status_code, "portfolio_status": portfolio_res.status_code}), 500
-
-
-import smtplib
-from email.message import EmailMessage
-
-@app.route("/send-bounty", methods=["POST"])
-def send_bounty():
-    data = request.json
-    content = data.get("content", "")
-    bounty = data.get("bounty", "")
-
-    sender_email = "prgenie.ai@gmail.com"
-    password = "bobo jjdq bgew giya"
-
-    # List of meme page contacts
-    receiver_emails = [
-        "kunalth2005@gmail.com",
-        "sadityasharma2086@gmail.com",
-        # Add 8 more emails
-    ]
-
-    subject = "💸 Claim This Bounty by Posting Our PR Content!"
-    body = f"""
-Hello Meme Page Admin,
-
-We're offering a bounty of {bounty} to promote the following PR content on your Instagram page:
-
----
-{content}
----
-
-If you're interested, please post it and reply with a link/screenshot to claim your reward.
-
-Cheers,
-PRGenie.ai
-"""
-
-    msg = EmailMessage()
-    msg.set_content(body)
-    msg['Subject'] = subject
-    msg['From'] = sender_email
-    msg['To'] = ", ".join(receiver_emails)
-
-    try:
-        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-            smtp.login(sender_email, password)
-            smtp.send_message(msg)
-        return jsonify({"success": True})
-    except Exception as e:
-        print("Email error:", e)
-        return jsonify({"success": False, "error": str(e)}), 500
-
 
 if __name__ == "__main__":
     app.run(debug=True)
