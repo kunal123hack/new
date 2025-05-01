@@ -14,7 +14,7 @@ ACCESS_TOKEN = "EAAanxPF3CZB4BO20DQZByi3lCGSSfjXc7HiapX7G3M2l2dK2I4eTNChPQCrgHGy
 import google.generativeai as genai
 
 # Replace with your API key
-genai.configure(api_key="AIzaSyDzeXSAWn4um8WLyDJCTQcPEiYeRWQM8F0")
+genai.configure(api_key="")
 
 llm = genai.GenerativeModel('gemini-1.5-pro')
 
